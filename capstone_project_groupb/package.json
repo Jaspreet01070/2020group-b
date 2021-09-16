@@ -1,0 +1,17 @@
+{
+  "name": "capstone_project_groupb",
+  "version": "1.0.0",
+  "description": "Capstone Project Group B with name Fantasy E-Sports league",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Team B",
+  "license": "ISC",
+  "dependencies": {
+    "@fightmegg/riot-api": "0.0.7",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mongoose": "^6.0.6"
+  }
+}
