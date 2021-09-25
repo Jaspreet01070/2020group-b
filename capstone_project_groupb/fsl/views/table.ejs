@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>GRANDMASTER LEAGUE</title>
+<link rel="stylesheet" href="style/styles.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!--    <script src="tablesFunction.js" async defer ></script>-->
+</head>
+<body>
+<form>
+    <h1>GRAND MASTER LEAGUE</h1>
+    <div id="main">
+        <div style="height: 500px;  overflow: auto; border: 2px solid blue">
+
+            <!-------Creating an empty array and pushing the values players and winning points into it-------->
+            <%
+            var player=[];
+            var win=[];
+            // retrieving the the players data from the RIOTAPI and pushing into the array
+                data.players.forEach(function(players)
+                {
+                    player.push(players.valueOf());
+
+                });
+            // retrieving the the winning points data from the RIOTAPI and pushing into the array
+                data.wins.forEach(function (wins)
+                {
+                    win.push(wins.valueOf());
+                });
+            %>
+
+
+            <!--------------The API data is displayed in a table structure----------->
+            <!--creation of table-->
+            <table id="showPlayer" >
+
+                <!--tables heading-->
+                <tr> <th>Players</th> <th>Wins</th> <th>Salary </th> <th> Select player </th></tr>
+
+                <!--table body-->
+                <tbody>
+
+                <!-- sorting the players based on winning points
+                the highest winning points are displayed first-->
+                <%
+                win.sort((a,b) => b-a );
+                console.log(win)
+                %>
+
+                <%
+                for (var i=0;i<=player.length;i++){ %>
+                    <tr>
+                        <td>
+                            <%= player[i]%>
+                        </td>
+                        <td> <%= win[i]%>
+                        </td>
+
+                        <!-- Assigning salaries to the players-->
+                        <!-- first top 30 players - $9500-->
+                        <!-- next 60 players - $7500-->
+                        <!-- next 120 players - $5000-->
+                        <!-- remaining  players i.e., beyond 200 players - 0 salary -->
+
+                        <td>
+                            <% if ( i < 30) { %> $9500<% }
+                            else if (i >= 30 && i < 80){ %> $7500<% }
+                            else if (i >= 80 && i <= 200){ %> $5000 <% }
+                            else  {  %> 0 <% } %>
+                        </td>
+                        <td>
+                            <!--Adding a checkbox for selecting the players  -->
+                            <!--calling the add() function on the checkbox whenever user clicks on it-->
+                            <label>
+                                <input id="selP" type="checkbox" name="chkAdd" style='background-color: lightgreen' onclick="add()">
+                                <span style="background-color: green; border: 1px outset black;">ADD</span>
+                            </label>
+                        </td></tr>
+                <% } %>
+                </tbody>
+            </table>
+        </div>
+        <div>
+        </div>
+
+
+        <div style="height: 500px;">
+
+            <!--for current salary info-->
+            <h3 id="salary"> Salary: $60000</h3> <!--  update here   -->
+
+            <!--Table is created dynamically as the user is adding the players-->
+            <table id="selPlayers">
+                <tr id="selDel"> <th> Selected Players </th> <th> Wins </th> <th>Salary</th> <th> Delete </th></tr>
+
+                <tbody id="txt">
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</form>
+<script>
+
+    /* for updating salary from both the functions*/
+    class x {
+        static salary1 = 60000;
+    }
+    var table1 = document.getElementById("showPlayer");
+    var table2 = document.getElementById("selPlayers");
+    var chk = document.getElementsByName("chkAdd");
+
+    /* Function for adding the players to participate in the contest */
+    function add()
+    {
+        if (table2.rows.length >= 11)
+        {
+            window.alert("must choose 10 players only.");// alert message: saying to choose 10 players only
+        } else {
+
+            for (var i = 0; i < chk.length; i++)//check the length of the checked buttons
+            {
+                if (chk[i].checked)//if condition to check whether check box button is checked or not -- if checked -- update the sal info
+                {
+
+                    // if the salary info is under 4999 we cannot select the table row that include salary greater than that
+                    if (x.salary1 < 4999)
+                    {
+                        window.alert("Exceeding the total CAP points $60,000 --- Choose another Player "); // alert message
+                    }
+                    // to create the new record dynamically into the table2  that is show table of selected players
+                    else
+                        {
+                        var newRow = table2.insertRow(table2.length),
+                            cell1 = newRow.insertCell(0),
+                            cell2 = newRow.insertCell(1),
+                            cell3 = newRow.insertCell(2),
+                            cell4 = newRow.insertCell(3);
+
+                        cell1.innerHTML = table1.rows[i + 1].cells[0].innerHTML;
+                        cell2.innerHTML = table1.rows[i + 1].cells[1].innerHTML;
+                        cell3.innerHTML = table1.rows[i + 1].cells[2].innerHTML;
+
+                        // check box button to create the  button at run time
+                        // to delete a row from selected players table
+                        cell4.innerHTML = "<input type='checkbox' name='chkRem' onclick='remove()'  id='chkRem' ><label for='chkRem' style='background-color: #cd5c5c'>Delete</label>  ";
+
+                        let sal = (table1.rows[i + 1].cells[2].innerHTML);
+                        sal = parseInt(sal.substring(sal.indexOf('$')+1, sal.length - 1));
+
+                            sal = parseInt(sal);
+                        x.salary1 -= sal;
+                        console.log(x.salary1);
+                        document.getElementById("salary").innerHTML = "Salary= " + (x.salary1);
+
+                        chk[i].checked = false;
+                        chk[i].disabled = true;  // disable the add button once clicked because we cannot add a row 2 times
+                    }
+                }
+
+            }
+        }
+    }
+
+    /* function for for deleting a player from the added table*/
+    function remove()
+    {
+       // var table1 = document.getElementById("showPlayer");
+        var chk = document.getElementsByName("chkRem");
+        // var selRem = document.getElementById("rem");
+
+        for (var i = 0; i < chk.length; i++)
+        {
+            if (chk[i].checked)
+            {
+                // get salary cell into sal variable and change to number type
+                var sal = table2.rows[i + 1].cells[2].innerHTML;
+                // remove the $ sign  and make a substring
+                sal = parseInt(sal.substring(sal.indexOf('$')+1, sal.length - 1));
+
+                console.log(sal);
+                x.salary1 += sal; // if delete button is clicked th salary will add to actual
+
+                // lastly show the salary to browser window
+                document.getElementById("salary").innerHTML = "Salary= " + (x.salary1);
+                chk[i].checked = false;
+                console.log(chk[i]);
+
+                // to delete the row
+                var b = chk[i].parentNode.parentNode;
+                b.parentNode.removeChild(b);
+            }
+        }
+    }
+</script>
+
+<script src="public/logic.js" async defer></script>
+</body>
+</html>
