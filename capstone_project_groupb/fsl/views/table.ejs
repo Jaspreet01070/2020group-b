@@ -141,11 +141,13 @@
                         cell1.innerHTML = table1.rows[i + 1].cells[0].innerHTML;
                         cell2.innerHTML = table1.rows[i + 1].cells[1].innerHTML;
                         cell3.innerHTML = table1.rows[i + 1].cells[2].innerHTML;
+                            cell4.innerHTML = "<label><input type='checkbox' name='chkRem' onclick='remove()'  id='chkRem' ><span style='background-color: #cd5c5c'>Delete</span></label>  ";
 
-                        // check box button to create the  button at run time
+
+                            // check box button to create the  button at run time
                         // to delete a row from selected players table
-                        cell4.innerHTML = "<input type='checkbox' name='chkRem' onclick='remove()'  id='chkRem' ><label for='chkRem' style='background-color: #cd5c5c'>Delete</label>  ";
-
+                        /*cell4.innerHTML = "<input type='checkbox' name='chkRem' onclick='remove()'  id='chkRem' ><label for='chkRem' style='background-color: #cd5c5c'>Delete</label>  ";
+*/
                         let sal = (table1.rows[i + 1].cells[2].innerHTML);
                         sal = parseInt(sal.substring(sal.indexOf('$')+1, sal.length - 1));
 
