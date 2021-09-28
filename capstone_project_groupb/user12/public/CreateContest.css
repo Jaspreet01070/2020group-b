@@ -1,0 +1,111 @@
+
+body{
+    background-image: url("game.jpeg");
+    background-position: center;
+    background-size: cover;
+    font-family: sans-serif;
+    margin-top:95px;
+
+}
+.heading{
+    font-size:55px;
+    color:yellow;
+    text-shadow:6px 0 0 darkred,0 6px 0 darkred,-6px 0 0 darkred,0 -6px 0 darkred;
+    padding:1px 1px 1px 1px;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-left: auto;
+    font-family: FontAwesome;
+}
+.subform{
+    width:900px;
+    background-color:black;
+    margin:auto;
+    color:white;
+    padding:1px 2px 4px 2px;
+    text-align:center;
+    border-radius:50px 50px 0px 0px;
+    border-style: solid;
+    border-color: steelblue;
+    border-width: 6px;
+    font-size:88px;
+
+}
+.main{
+    background-color: rgba(149,149,170,0.6);
+    width:900px;
+    margin:auto;
+}
+form{
+    padding: 70px;
+}
+#name{
+    width: 100%;
+    height:80px;
+}
+.name1{
+    position:relative;
+    alignment: center;
+    margin-top: -20px;
+    margin-left: 320px;
+    width:280px;
+    color:black;
+    font-size:33px;
+    font-weight:600;
+}
+.inputName{
+    position:relative;
+    alignment: center;
+    margin-top: 0px;
+    margin-left: 260px;
+    line-height: 40px;
+    width:350px;
+    border-radius: 6px;
+    padding: 0 26px;
+    font-size: 25px;
+    text-align: center;
+    font-family: FontAwesome;
+}
+.date1{
+    position:relative;
+    alignment: center;
+    margin-top: 30px;
+    margin-left: 330px;
+    width:280px;
+    color:black;
+    font-size:30px;
+    font-weight:600
+
+}
+.inputDate{
+    position:relative;
+    alignment: center;
+    margin-top: 0px;
+    margin-left: 310px;
+    line-height: 40px;
+    width:250px;
+    border-radius: 6px;
+    padding: 0 26px;
+    font-size:20px;
+    text-align: center;
+    align-content: center;
+    font-family: FontAwesome;
+}
+
+button{
+    background-color: #3BAF9F;
+    display:block;
+    margin-top: 50px;
+    margin-left: 340px;
+    text-align: center;
+    border-radius:12px;
+    border:2px solid black;
+    padding:10px 60px;
+    outline:none;
+    color:white;
+    cursor:pointer;
+    font-size:18px;
+    font-weight: bold;
+}
+button:hover{
+    background-color: #5390F5;
+}
