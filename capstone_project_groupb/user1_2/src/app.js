@@ -61,9 +61,9 @@ app.post('/registrationabcd',async(req,res)=>{
     if(email && !email.match(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()\.,;\s@\"]+\.{0,1})+[^<>()\.,;:\s@\"]{2,})$/)) errors['email1']='Enter valid email format'
     if(contactnumber && contactnumber.length != 10) errors['contactnumber2']='Contact number should match with the exact length of 10 digits'
     if(contactnumber && !contactnumber.match(/^[0-9]*$/)) errors['contactnumber1']='Contact number should be in numbers only'
-    if(username && !username.match(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[@#*_]).{10,20}$/)) errors['username1']='Username should contains atleast one upercase, one lowercase, one number and one special character from @/#/*/_'
+    if(username && !username.match(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[@#*_]).{10,20}$/)) errors['username1']='Username should contains atleast one upercase, one lowercase, one number and one special character from @/#/*/_. Size should be atleast 10 and lessthen 20 character'
     if(password && confirmpassword && !confirmpassword.match(password)) errors['password2']='Password has to match'
-    if(password && !password.match(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[@#*_!]).{8,}$/)) errors['password1']='Password should contains atleast one upercase, one lowercase, one number and one special character from @/#/*/_/!'
+    if(password && !password.match(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[@#*_!]).{8,}$/)) errors['password1']='Password should contains atleast one upercase, one lowercase, one number and one special character from @/#/*/_/!. Size should be atleast 8 character'
     const emailExists = await Register.findOne({email:email});
     const userNameExists= await Register.findOne({username:username})
     if(emailExists) errors['email']='Email already exists'
