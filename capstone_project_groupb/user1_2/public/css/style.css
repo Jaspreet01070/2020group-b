@@ -1,0 +1,197 @@
+/*Login page CSS*/
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap');
+
+body {
+    color: #000000;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.5;
+    margin: 0 auto;
+    font-family: 'Open Sans', sans-serif;
+}
+a:hover {
+    color: #b44200;
+}
+.card.login-card {
+    height: 600px;
+    margin-top: auto;
+    margin-bottom: auto;
+    background-color: #2a2a2a;
+}
+.card.registration-card {
+    height: auto;
+    padding-top: 30px;
+    padding-bottom: 30px;;
+}
+.login-card .card-body {
+    flex: none;
+    padding: 1rem 3rem;
+    color: #ffffff;
+}
+.login-card .card-body > * {
+    flex: 0 0 100%;
+}
+.card.login-card > img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 4px solid #000000;
+    margin: 0 auto;
+}
+.login-card .card-body .form-check {
+    text-align: center;
+}
+.login-card .card-body .form-check .form-check-input {
+    float: none;
+}
+.login-card .login_username span, .login-card .login_password span {
+    width: 50px;
+    padding: 0;
+}
+.login-card .card-body .button-group {
+    padding: 0 40px;
+}
+.login-card .card-body .button-group .btn {
+    width: 100%;
+}
+.login-card .card-body .button-group .btn {
+    color: #ffffff;
+    background-color: #b44200;
+    border-color: #b44200;
+}
+.login-card .login_username span {
+    background-image: url("../images/user.png");
+}
+.login-card .login_password span {
+    background-image: url("../images/key.png");
+}
+.login-card .login_username span, .login-card .login_password span {
+    background-color: #fcef57;
+    background-repeat: no-repeat;
+    background-position: center center;
+    border-color: #fcef57;
+}
+.login-card .login_username, .login-card .login_password {
+    height: 50px;
+}
+.login-card .card-body .login-links {
+    color: #ffffff;
+}
+.login-card .card-body .login-links:hover {
+    color: #b44200;
+}
+.login-card .login_username .form-control, .login-card .login_password .form-control {
+    border-color: #ffffff;
+}
+.colorlibcopy-agile {
+    float: left;
+    width: 100%;
+    text-align: center;
+    padding: 40px 0;
+    background: #000;
+    color: #fff;
+    margin-top: 50px;
+}
+.colorlibcopy-agile p, .colorlibcopy-agile p > a {
+    color: #ffffff;
+    margin: 0;
+}
+
+
+/* Signup page CSS */
+body
+{
+    background-color: violet;
+    background-image: url("../images/background.jpg");
+    background-repeat: no-repeat; 
+    background-size: cover; 
+}
+.myform-form
+{
+    margin-top: -25px;
+    margin-bottom: 75px;
+}
+
+.smallmt-3
+{
+    font-size: 18px;
+    margin-top: 14px;
+    color: rgb(72, 255, 0);
+}
+
+span
+{
+    color: rgb(255, 255, 0);
+    font-size: 16px;
+}
+
+.send-button{
+    background: #b44200;
+    width:100%;
+    font-weight: 600;
+    color:#fff;
+    padding: 8px 25px;
+    }
+    input[type=number]::-webkit-inner-spin-button, 
+    input[type=number]::-webkit-outer-spin-button { 
+      -webkit-appearance: none; 
+      margin: 0; 
+    }
+    .g-button{
+    color: #fff !important;
+    border: 1px solid #EA4335;
+    background: #ea4335 !important;
+    width:100%;
+    font-weight: 600;
+    color:#fff;
+    padding: 8px 25px;
+    }
+    .my-input{
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+    cursor: text;
+    padding: 8px 10px;
+    transition: border .1s linear;
+    }
+    .header-title{
+    margin: 5rem 0;
+    }
+    h1{
+    font-size: 45px;
+    line-height: 40px;
+    font-weight: 600;
+    color:rgb(72, 255, 0);
+    }
+    a {
+        color:rgb(72, 255, 0);
+    }
+    .login-or {
+    position: relative;
+    color: #aaa;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    }
+    .span-or {
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: -2px;
+    margin-left: -25px;
+    background-color: #fff;
+    width: 50px;
+    text-align: center;
+    }
+    .hr-or {
+    height: 1px;
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+    }
+    @media screen and (max-width:480px){
+    h1{
+    font-size: 26px;
+    }
+    h2{
+    font-size: 20px;
+    }
+}
