@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <!--Title, Css and Bootstrap links -->
+    <title>Registration - Fantasy E-Sports League</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<!--Validations for Signup page and sending the data to the Server side and get back whatever the response get-->
+<script type="text/javascript" src="js/custom.js"></script>
+<body>
+<div class="container">
+    <div class="col-md-6 mx-auto text-center">
+        <div class="header-title">
+            <h1 class="wv-heading--title">
+                Creative SignUp Form
+            </h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 mx-auto">
+            <div class="myform-form ">
+
+                <!--FORM for create new account which call validation() function when user clicks on Signup button-->
+                <form id="regiform" method="POST" onsubmit="return validation()">
+
+                    <div class="form-group">
+                        <input class="form-control my-input" type="text" id="firstname" name="firstname" placeholder="John" >
+                        <span id="validate1"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <input class="form-control my-input" type="text" id="lastname" name="lastname" placeholder="Dave" >
+                        <span id="validate2"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <input class="form-control my-input" type="text" id="email" name="email" placeholder="john887@saskpolytech.ca" >
+                        <span id="validate3"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <select class="form-control my-input" name="selectcountry" id="country" name="country">
+                            <option value="India">India</option>
+                            <option value="Canada">Canada</option>
+                            <option value="USA">USA</option>
+                            <option value="UK">UK</option>
+                        </select>
+                        <span id="validate8"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <input class="form-control my-input" type="text" id="contactnumber" name="contactnumber" placeholder="6394251331" >
+                        <span id="validate4"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <input class="form-control my-input" type="text" id="username" name="username" placeholder="Lucifer@987653" >
+                        <span id="validate5">Username contains atleast one upeercase, lowercase, number and special character from @/#/*/_. Atleast 10 and less then 20 character.</span>
+                    </div>
+
+                    <div class="form-group">
+                        <input class="form-control my-input" type="password" id="password" name="password" placeholder="Johndave@9876">
+                        <span id="validate6">Password contains atleast one upeercase, lowercase, number and special character from @/#/*/_/!. Atleast 8 character.</span>
+                    </div>
+
+                    <div class="form-group">
+                        <input class="form-control my-input" type="password" id="confirmpassword" name="confirmpassword" placeholder="Johndave@9876" >
+                        <span id="validate7"></span>
+                    </div>
+
+                    <div class="text-center ">
+                        <button type="submit" id="btn" class=" btn btn-block send-button tx-tfm">Create Account</button>
+                        <span id='loading' style='display: none;'>Loading...</span>
+                    </div>
+
+                    <!--Existing Customer Click on Login link and redirect to the "/" url, which is Login url-->
+                    <p class="smallmt-3">Already existing Customer? <a href="/" class="ps-hero__content__link">Login</a>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
