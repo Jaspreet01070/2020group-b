@@ -9,9 +9,12 @@ const bcrypt = require("bcryptjs");
 const nodemailer = require("nodemailer");
 const {PlatformId,RiotAPI} = require('@fightmegg/riot-api');
 
+const  fs = require('fs');
+
 require("./src/db/conn");
 const Register = require("./src/models/registers");
 var Contest = require('./src/models/contest-model');
+var Players = require('./src/models/players');
 const { json } = require("express");
 
 // Run on the port 3001
@@ -324,7 +327,7 @@ module.exports = {
 
 app.get("/selectPlayers",(req,res)=>{
     (async () =>{
-        const rAPI = new RiotAPI('RGAPI-69b3e39e-c082-4e26-894f-dcb1ad60c79e');
+        const rAPI = new RiotAPI('RGAPI-949227e1-8c8e-4399-83af-620a05a3a4a1');
         const summoner = await  rAPI.league.getGrandmasterByQueue({
             region: PlatformId.EUW1,
             queue: "RANKED_SOLO_5x5"
@@ -337,6 +340,8 @@ app.get("/selectPlayers",(req,res)=>{
             players[i] = summoner.entries[i].summonerName ;
             wins[i] = summoner.entries[i].wins;
         });
+
+
 //sending the retrieved data back into table file
         res.render('SelectPlayers',{data: {players:players,wins:wins }} );
 
@@ -345,7 +350,45 @@ app.get("/selectPlayers",(req,res)=>{
 });
 
 
+// sending player's data into collection => Players
+app.post('/submitPlayers', (req, res) => {
 
+    var playerInfo = req.body.data;
+
+    let pName,
+        pWins ,
+        pSalary ,
+        pCaptain ;
+
+    playerInfo.forEach((obj,i)=>{
+
+        pName = playerInfo[i]["selectedplayers"],
+            pWins = playerInfo[i]["wins"],
+            pSalary = playerInfo[i]["salary"],
+            pCaptain = playerInfo[i]["teamcaptain"];
+
+       // pName.substring(pName.indexOf('\n')+1,pName.indexOf('\n'));
+        console.log(pCaptain);
+
+
+        let myPlayers = new Players({
+            players: pName,
+            wins: pWins,
+            salary:pSalary,
+            captain: pCaptain
+        });
+
+        // console.log(myPlayers);
+
+        myPlayers.save()
+            .then(doc=>{
+                return res.status(201).send(doc)})
+            .catch(err=>{
+                return res.status(404).send(err)});
+      });
+
+
+});
 
 
 // to the home page

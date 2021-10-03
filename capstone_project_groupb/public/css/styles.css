@@ -2,9 +2,9 @@ div{
     float: left;
     padding: 20px;
 }
-#main {
+/*#main {
     alignment: center;
-}
+}*/
 h1{
     color:darkblue ;
     text-align: center;
@@ -55,7 +55,7 @@ table td{
     font-size: 20px;
     border: 2px solid black ;
     border-collapse: collapse;
-    text-align: center;
+    //text-align: center;
 }
 
 

@@ -6,9 +6,10 @@
 <link rel="stylesheet" href="css/styles.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!--    <script src="tablesFunction.js" async defer ></script>-->
+    <script src="app.js" ></script>
 </head>
 <body>
-<form>
+
     <h1>GRAND MASTER LEAGUE</h1>
     <div id="main">
         <div style="height: 500px;  overflow: auto; border: 2px solid blue">
@@ -88,19 +89,26 @@
         <div style="height: 500px;">
 
             <!--for current salary info-->
-            <h3 id="salary"> Salary: $60000</h3> <!--  update here   -->
+            <h3 id="salary"> Salary: $60000</h3>
+
+<!--            <form action="/submitPlayers" method="POST">-->
+
+
 
             <!--Table is created dynamically as the user is adding the players-->
-            <table id="selPlayers">
-                <tr id="selDel"> <th> Selected Players </th> <th> Wins </th> <th>Salary</th> <th> Delete </th></tr>
+            <table id="selPlayers" name="selPlayers">
+                <tr id="selDel"> <th>Selected Players</th> <th>Wins</th> <th>Salary</th> <th>Delete</th><th>Team Captain</th></tr>
 
                 <tbody id="txt">
                 </tbody>
             </table>
+
+                <input type="submit" value="submit" onclick="submitPlayers()" />
+<!--            </form>-->
         </div>
     </div>
 
-</form>
+
 <script>
 
     /* for updating salary from both the functions*/
@@ -139,13 +147,14 @@
                             cell1 = newRow.insertCell(0),
                             cell2 = newRow.insertCell(1),
                             cell3 = newRow.insertCell(2),
-                            cell4 = newRow.insertCell(3);
+                            cell4 = newRow.insertCell(3),
+                            cell5 = newRow.insertCell(4);
 
                         cell1.innerHTML = table1.rows[i + 1].cells[0].innerHTML;
                         cell2.innerHTML = table1.rows[i + 1].cells[1].innerHTML;
                         cell3.innerHTML = table1.rows[i + 1].cells[2].innerHTML;
                         cell4.innerHTML = "<label><input type='checkbox' name='chkRem' onclick='remove()'  id='chkRem' ><span style='background-color: #cd5c5c'>Delete</span></label>  ";
-
+                        cell5.innerHTML =  "<input type='radio' name='captain' onclick='selectCaptain()' >"
 
                             // check box button to create the  button at run time
                         // to delete a row from selected players table
@@ -199,6 +208,78 @@
             }
         }
     }
+
+    function selectCaptain(){
+
+        var capt = document.getElementsByName('captain');
+        var selPlayers = document.getElementById("selPlayers");
+
+        for (var i = 0; i < capt.length; i++) {
+            if (capt[i].checked) {
+                // console.log("captain");
+                // console.log( selPlayers.rows[i+1].cells[0].innerHTML);
+            }
+        }
+    }
+
+    function submitPlayers() {
+
+        var capt = document.getElementsByName('captain');
+        let table = document.getElementById('selPlayers');
+        var data = [];
+        var header = [];
+        for (var i = 0; i < table.rows[0].cells.length; i++) {
+            header[i] = table.rows[0].cells[i].innerHTML.toLowerCase().replace(/ /gi ,"");
+        }
+
+        for (var i = 1; i < table.rows.length; i++) {
+            var tableRow = table.rows[i];
+            var rowData = {};
+            console.log(tableRow.cells.length);
+            for (var j = 0; j < tableRow.cells.length; j++) {
+
+                if(j === 4 )
+                {
+                    console.log("4th");
+                        if (capt.checked) {
+                            rowData[header[j]] = "true";
+                            console.log("captain");
+                            //break;
+                            // console.log( selPlayers.rows[i+1].cells[0].innerHTML);
+                        }
+                        else {
+                            rowData[header[j]] = "false";
+                        }
+
+
+
+                }
+                else {
+                    rowData[header[j]] = tableRow.cells[j].innerHTML.replace(/ /g, '').trim();
+                }
+            }
+            data.push(rowData);
+
+        }
+
+
+
+        var myjson = JSON.stringify(data);
+        console.log(myjson.trim());
+
+
+        fetch('/submitPlayers', {
+            method: 'POST', headers: {
+                'Content-Type': 'application/json'
+            }, body: JSON.stringify({ data })
+        })
+            .then((res) => res.json())
+            .catch((error) => {
+                alert(error)
+            })
+
+    }
+
 </script>
 
 </body>

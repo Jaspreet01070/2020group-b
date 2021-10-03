@@ -6,4 +6,4 @@ var contestSchema = new mongoose.Schema({
     cStatus: {type: Boolean, required: true}
 });
 
-module.exports = mongoose.model("Contest", contestSchema);
+module.exports =  mongoose.model("Contest", contestSchema);
